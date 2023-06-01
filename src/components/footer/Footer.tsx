@@ -3,8 +3,6 @@ import styles from './footer.module.css';
 import Image from 'next/image';
 
 const Footer = () => {
-  console.log('123');
-
   return (
     <div className={styles.container}>
       <div>©2023 Jaeha. All rights reserved.</div>

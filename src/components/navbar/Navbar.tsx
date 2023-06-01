@@ -2,6 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
+import styles from './navbar.module.css';
+import DarkModeToggle from '../DarkModeToggle/DarkModeToggle';
 // import { signOut, useSession } from "next-auth/react";
 
 const links = [
@@ -39,16 +41,23 @@ const links = [
 
 export default function Navbar() {
   return (
-    <div>
-      <Link href="/">Jaeha</Link>
-      {links.map((link) => {
-        return (
-          <Link key={link.id} href={link.url}>
-            {link.title}
-          </Link>
-        );
-      })}
-      <button onClick={() => console.log('logout')}>Logout</button>
+    <div className={styles.container}>
+      <Link href="/" className={styles.logo}>
+        Jaeha
+      </Link>
+      <div className={styles.links}>
+        <DarkModeToggle />
+        {links.map((link) => {
+          return (
+            <Link key={link.id} href={link.url} className={styles.link}>
+              {link.title}
+            </Link>
+          );
+        })}
+        <button className={styles.logout} onClick={() => console.log('logout')}>
+          Logout
+        </button>
+      </div>
     </div>
   );
 }
