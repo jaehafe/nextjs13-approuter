@@ -35,12 +35,20 @@ export default function Dashboard() {
 
   // console.log(data);
 
+  interface IPost {
+    _id: string;
+    title: string;
+    img: string;
+    content: string;
+  }
+
   const session = useSession();
   const router = useRouter();
 
   console.log('session>>>', session);
 
-  const fetcher = (...args) => fetch(...args).then((res) => res.json());
+  const fetcher = (...args: Parameters<typeof fetch>) =>
+    fetch(...args).then((res) => res.json());
 
   const { data, mutate, error, isLoading } = useSWR(
     `/api/posts?username=${session?.data?.user?.name}`,
@@ -56,13 +64,6 @@ export default function Dashboard() {
   }
 
   console.log('data>>', data);
-
-  interface IPost {
-    _id: string;
-    title: string;
-    img: string;
-    content: string;
-  }
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
