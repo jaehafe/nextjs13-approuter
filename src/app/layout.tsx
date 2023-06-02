@@ -3,6 +3,7 @@ import Footer from '@/components/footer/Footer';
 import Navbar from '@/components/navbar/Navbar';
 import { Inter, Roboto, Poppins } from 'next/font/google';
 import ThemeProvider from '@/comtext/ThemeContext';
+import AuthProvider from '@/components/AuthProvider/AuthProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,11 +21,13 @@ export default function RootLayout({
     <html lang="ko">
       <body className={inter.className}>
         <ThemeProvider>
-          <div className="container">
-            <Navbar />
-            {children}
-            <Footer />
-          </div>
+          <AuthProvider>
+            <div className="container">
+              <Navbar />
+              {children}
+              <Footer />
+            </div>
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>
